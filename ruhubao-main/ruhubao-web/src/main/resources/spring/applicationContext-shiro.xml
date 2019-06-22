@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/data/jpa
+	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+	
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"/>
+		<property name="loginUrl" value="/login.jsp"></property>
+		<!-- 未授权跳转页面 -->
+		<property name="unauthorizedUrl" value="/noauth.jsp"></property>
+		<!-- 过滤器规则 -->	
+		<property name="filterChainDefinitions">
+			<!-- 
+				*: 一级目录 
+				**： 任意级目录
+			 -->
+			<value>
+				/css/**=anon
+				/images/**=anon
+				/img/**=anon
+				/js/**=anon
+				/ku/**=anon
+				/mobile/**=anon
+				/tuiguangye/**=anon
+				/crm-system/**=anon
+				/services/**=anon
+				/validatecode.jsp=anon
+				/data/user/login.do=anon
+				/index.html=anon
+				/about.html=anon
+				/new.html=anon
+				/show.html=anon
+				/data/customer/getCustomers =anon
+				/data/customer/addCustomer =anon
+				
+				/**=authc
+				<!-- 用户授权 -->
+				<!-- /pages/base/standard.jsp* = perms[standard:*]
+				/pages/base/courier.jsp* = perms[courier:*]
+				/pages/base/fixed_area.jsp* = perms[fixedArea:*]
+				/pages/base/area.jsp* = perms[area:*]
+				/pages/base/sub_area.jsp* = perms[subArea:*]
+				/pages/take_delivery/waybill_quick.jsp* = perms[waybillquick:*]
+				/pages/take_delivery/waybill.jsp* = perms[waybill:*]
+				/pages/take_delivery/waybill_manage.jsp* = perms[waybillmanage:*]
+				/pages/take_delivery/promotion.jsp* = perms[promotion:*]
+				/pages/system/user.jsp* = perms[user:*]
+				/pages/system/role.jsp* = perms[role:*]
+				/pages/system/resource.jsp* = perms[resource:*] -->
+				<!-- /**=authc -->
+			</value>
+		</property>	
+	</bean>
+	
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- 关联realam -->
+		<property name="realm" ref="loginRealm"/>
+	</bean>
+	
+	<bean id="loginRealm" class="cn.crm.ruhubao.realms.LoginRealm"></bean>
+</beans>

@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.crm.ruhubao.mapper.base.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="cn.crm.ruhubao.pojo.base.Customer" >
+    <id column="cst_id" property="id" jdbcType="INTEGER" />
+    <result column="cst_name" property="name" jdbcType="VARCHAR" />
+    <result column="cst_tel_phone" property="telPhone" jdbcType="VARCHAR" />
+    <result column="cst_weixin_qq" property="weixinQq" jdbcType="VARCHAR" />
+    <result column="cst_age_groups" property="ageGroups" jdbcType="VARCHAR" />
+    <result column="cst_type" property="type" jdbcType="VARCHAR" />
+    <result column="cst_area" property="area" jdbcType="VARCHAR" />
+    <result column="cst_education" property="education" jdbcType="VARCHAR" />
+    <result column="cst_major" property="major" jdbcType="VARCHAR" />
+    <result column="cst_nvq" property="nvq" jdbcType="VARCHAR" />
+    <result column="cst_years_social" property="yearsSocial" jdbcType="VARCHAR" />
+    <result column="cst_ruhu_reason" property="ruhuReason" jdbcType="VARCHAR" />
+    <result column="cst_live_permit_years" property="livePermitYears" jdbcType="VARCHAR" />
+    <result column="cst_marriage" property="marriage" jdbcType="VARCHAR" />
+    <result column="cst_birth_control" property="birthControl" jdbcType="VARCHAR" />
+    <result column="cst_has_hours" property="hasHours" jdbcType="VARCHAR" />
+    <result column="cst_create_user_id" property="createUserId" jdbcType="INTEGER" />
+    <result column="cst_status" property="status" jdbcType="INTEGER" />
+    <result column="cst_remark" property="remark" jdbcType="VARCHAR" />
+    <result column="cst_source_link" property="sourceLink" jdbcType="VARCHAR" />
+    <result column="cst_from_platform" property="fromPlatform" jdbcType="VARCHAR" />
+    <result column="cst_have_labor_contract" property="haveLaborContract" jdbcType="CHAR" />
+    <result column="cst_move_address" property="moveAddress" jdbcType="VARCHAR" />
+    <result column="cst_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="cst_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cst_id, cst_name, cst_tel_phone, cst_weixin_qq, cst_age_groups, cst_type, cst_area, 
+    cst_education, cst_major, cst_nvq, cst_years_social, cst_ruhu_reason, cst_live_permit_years, 
+    cst_marriage, cst_birth_control, cst_has_hours, cst_create_user_id, cst_status, cst_remark, 
+    cst_source_link, cst_from_platform, cst_have_labor_contract, cst_move_address, cst_create_time, 
+    cst_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.crm.ruhubao.pojo.base.CustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_customer
+    where cst_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_customer
+    where cst_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.crm.ruhubao.pojo.base.CustomerExample" >
+    delete from tb_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.crm.ruhubao.pojo.base.Customer" >
+    insert into tb_customer (cst_id, cst_name, cst_tel_phone, 
+      cst_weixin_qq, cst_age_groups, cst_type, 
+      cst_area, cst_education, cst_major, 
+      cst_nvq, cst_years_social, cst_ruhu_reason, 
+      cst_live_permit_years, cst_marriage, cst_birth_control, 
+      cst_has_hours, cst_create_user_id, cst_status, 
+      cst_remark, cst_source_link, cst_from_platform, 
+      cst_have_labor_contract, cst_move_address, cst_create_time, 
+      cst_update_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{telPhone,jdbcType=VARCHAR}, 
+      #{weixinQq,jdbcType=VARCHAR}, #{ageGroups,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{nvq,jdbcType=VARCHAR}, #{yearsSocial,jdbcType=VARCHAR}, #{ruhuReason,jdbcType=VARCHAR}, 
+      #{livePermitYears,jdbcType=VARCHAR}, #{marriage,jdbcType=VARCHAR}, #{birthControl,jdbcType=VARCHAR}, 
+      #{hasHours,jdbcType=VARCHAR}, #{createUserId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{sourceLink,jdbcType=VARCHAR}, #{fromPlatform,jdbcType=VARCHAR}, 
+      #{haveLaborContract,jdbcType=CHAR}, #{moveAddress,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.crm.ruhubao.pojo.base.Customer" >
+    insert into tb_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        cst_id,
+      </if>
+      <if test="name != null" >
+        cst_name,
+      </if>
+      <if test="telPhone != null" >
+        cst_tel_phone,
+      </if>
+      <if test="weixinQq != null" >
+        cst_weixin_qq,
+      </if>
+      <if test="ageGroups != null" >
+        cst_age_groups,
+      </if>
+      <if test="type != null" >
+        cst_type,
+      </if>
+      <if test="area != null" >
+        cst_area,
+      </if>
+      <if test="education != null" >
+        cst_education,
+      </if>
+      <if test="major != null" >
+        cst_major,
+      </if>
+      <if test="nvq != null" >
+        cst_nvq,
+      </if>
+      <if test="yearsSocial != null" >
+        cst_years_social,
+      </if>
+      <if test="ruhuReason != null" >
+        cst_ruhu_reason,
+      </if>
+      <if test="livePermitYears != null" >
+        cst_live_permit_years,
+      </if>
+      <if test="marriage != null" >
+        cst_marriage,
+      </if>
+      <if test="birthControl != null" >
+        cst_birth_control,
+      </if>
+      <if test="hasHours != null" >
+        cst_has_hours,
+      </if>
+      <if test="createUserId != null" >
+        cst_create_user_id,
+      </if>
+      <if test="status != null" >
+        cst_status,
+      </if>
+      <if test="remark != null" >
+        cst_remark,
+      </if>
+      <if test="sourceLink != null" >
+        cst_source_link,
+      </if>
+      <if test="fromPlatform != null" >
+        cst_from_platform,
+      </if>
+      <if test="haveLaborContract != null" >
+        cst_have_labor_contract,
+      </if>
+      <if test="moveAddress != null" >
+        cst_move_address,
+      </if>
+      <if test="createTime != null" >
+        cst_create_time,
+      </if>
+      <if test="updateTime != null" >
+        cst_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telPhone != null" >
+        #{telPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinQq != null" >
+        #{weixinQq,jdbcType=VARCHAR},
+      </if>
+      <if test="ageGroups != null" >
+        #{ageGroups,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="nvq != null" >
+        #{nvq,jdbcType=VARCHAR},
+      </if>
+      <if test="yearsSocial != null" >
+        #{yearsSocial,jdbcType=VARCHAR},
+      </if>
+      <if test="ruhuReason != null" >
+        #{ruhuReason,jdbcType=VARCHAR},
+      </if>
+      <if test="livePermitYears != null" >
+        #{livePermitYears,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="birthControl != null" >
+        #{birthControl,jdbcType=VARCHAR},
+      </if>
+      <if test="hasHours != null" >
+        #{hasHours,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceLink != null" >
+        #{sourceLink,jdbcType=VARCHAR},
+      </if>
+      <if test="fromPlatform != null" >
+        #{fromPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="haveLaborContract != null" >
+        #{haveLaborContract,jdbcType=CHAR},
+      </if>
+      <if test="moveAddress != null" >
+        #{moveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.crm.ruhubao.pojo.base.CustomerExample" resultType="java.lang.Integer" >
+    select count(*) from tb_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_customer
+    <set >
+      <if test="record.id != null" >
+        cst_id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        cst_name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telPhone != null" >
+        cst_tel_phone = #{record.telPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weixinQq != null" >
+        cst_weixin_qq = #{record.weixinQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ageGroups != null" >
+        cst_age_groups = #{record.ageGroups,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        cst_type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        cst_area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null" >
+        cst_education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.major != null" >
+        cst_major = #{record.major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nvq != null" >
+        cst_nvq = #{record.nvq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yearsSocial != null" >
+        cst_years_social = #{record.yearsSocial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruhuReason != null" >
+        cst_ruhu_reason = #{record.ruhuReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.livePermitYears != null" >
+        cst_live_permit_years = #{record.livePermitYears,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marriage != null" >
+        cst_marriage = #{record.marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthControl != null" >
+        cst_birth_control = #{record.birthControl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasHours != null" >
+        cst_has_hours = #{record.hasHours,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null" >
+        cst_create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        cst_status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        cst_remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceLink != null" >
+        cst_source_link = #{record.sourceLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromPlatform != null" >
+        cst_from_platform = #{record.fromPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.haveLaborContract != null" >
+        cst_have_labor_contract = #{record.haveLaborContract,jdbcType=CHAR},
+      </if>
+      <if test="record.moveAddress != null" >
+        cst_move_address = #{record.moveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        cst_create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        cst_update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_customer
+    set cst_id = #{record.id,jdbcType=INTEGER},
+      cst_name = #{record.name,jdbcType=VARCHAR},
+      cst_tel_phone = #{record.telPhone,jdbcType=VARCHAR},
+      cst_weixin_qq = #{record.weixinQq,jdbcType=VARCHAR},
+      cst_age_groups = #{record.ageGroups,jdbcType=VARCHAR},
+      cst_type = #{record.type,jdbcType=VARCHAR},
+      cst_area = #{record.area,jdbcType=VARCHAR},
+      cst_education = #{record.education,jdbcType=VARCHAR},
+      cst_major = #{record.major,jdbcType=VARCHAR},
+      cst_nvq = #{record.nvq,jdbcType=VARCHAR},
+      cst_years_social = #{record.yearsSocial,jdbcType=VARCHAR},
+      cst_ruhu_reason = #{record.ruhuReason,jdbcType=VARCHAR},
+      cst_live_permit_years = #{record.livePermitYears,jdbcType=VARCHAR},
+      cst_marriage = #{record.marriage,jdbcType=VARCHAR},
+      cst_birth_control = #{record.birthControl,jdbcType=VARCHAR},
+      cst_has_hours = #{record.hasHours,jdbcType=VARCHAR},
+      cst_create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      cst_status = #{record.status,jdbcType=INTEGER},
+      cst_remark = #{record.remark,jdbcType=VARCHAR},
+      cst_source_link = #{record.sourceLink,jdbcType=VARCHAR},
+      cst_from_platform = #{record.fromPlatform,jdbcType=VARCHAR},
+      cst_have_labor_contract = #{record.haveLaborContract,jdbcType=CHAR},
+      cst_move_address = #{record.moveAddress,jdbcType=VARCHAR},
+      cst_create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      cst_update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.crm.ruhubao.pojo.base.Customer" >
+    update tb_customer
+    <set >
+      <if test="name != null" >
+        cst_name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telPhone != null" >
+        cst_tel_phone = #{telPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinQq != null" >
+        cst_weixin_qq = #{weixinQq,jdbcType=VARCHAR},
+      </if>
+      <if test="ageGroups != null" >
+        cst_age_groups = #{ageGroups,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        cst_type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        cst_area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        cst_education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        cst_major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="nvq != null" >
+        cst_nvq = #{nvq,jdbcType=VARCHAR},
+      </if>
+      <if test="yearsSocial != null" >
+        cst_years_social = #{yearsSocial,jdbcType=VARCHAR},
+      </if>
+      <if test="ruhuReason != null" >
+        cst_ruhu_reason = #{ruhuReason,jdbcType=VARCHAR},
+      </if>
+      <if test="livePermitYears != null" >
+        cst_live_permit_years = #{livePermitYears,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        cst_marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="birthControl != null" >
+        cst_birth_control = #{birthControl,jdbcType=VARCHAR},
+      </if>
+      <if test="hasHours != null" >
+        cst_has_hours = #{hasHours,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        cst_create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        cst_status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        cst_remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceLink != null" >
+        cst_source_link = #{sourceLink,jdbcType=VARCHAR},
+      </if>
+      <if test="fromPlatform != null" >
+        cst_from_platform = #{fromPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="haveLaborContract != null" >
+        cst_have_labor_contract = #{haveLaborContract,jdbcType=CHAR},
+      </if>
+      <if test="moveAddress != null" >
+        cst_move_address = #{moveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        cst_create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        cst_update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cst_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.crm.ruhubao.pojo.base.Customer" >
+    update tb_customer
+    set cst_name = #{name,jdbcType=VARCHAR},
+      cst_tel_phone = #{telPhone,jdbcType=VARCHAR},
+      cst_weixin_qq = #{weixinQq,jdbcType=VARCHAR},
+      cst_age_groups = #{ageGroups,jdbcType=VARCHAR},
+      cst_type = #{type,jdbcType=VARCHAR},
+      cst_area = #{area,jdbcType=VARCHAR},
+      cst_education = #{education,jdbcType=VARCHAR},
+      cst_major = #{major,jdbcType=VARCHAR},
+      cst_nvq = #{nvq,jdbcType=VARCHAR},
+      cst_years_social = #{yearsSocial,jdbcType=VARCHAR},
+      cst_ruhu_reason = #{ruhuReason,jdbcType=VARCHAR},
+      cst_live_permit_years = #{livePermitYears,jdbcType=VARCHAR},
+      cst_marriage = #{marriage,jdbcType=VARCHAR},
+      cst_birth_control = #{birthControl,jdbcType=VARCHAR},
+      cst_has_hours = #{hasHours,jdbcType=VARCHAR},
+      cst_create_user_id = #{createUserId,jdbcType=INTEGER},
+      cst_status = #{status,jdbcType=INTEGER},
+      cst_remark = #{remark,jdbcType=VARCHAR},
+      cst_source_link = #{sourceLink,jdbcType=VARCHAR},
+      cst_from_platform = #{fromPlatform,jdbcType=VARCHAR},
+      cst_have_labor_contract = #{haveLaborContract,jdbcType=CHAR},
+      cst_move_address = #{moveAddress,jdbcType=VARCHAR},
+      cst_create_time = #{createTime,jdbcType=TIMESTAMP},
+      cst_update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where cst_id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
