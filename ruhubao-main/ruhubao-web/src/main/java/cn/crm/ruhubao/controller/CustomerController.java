@@ -51,6 +51,7 @@ public class CustomerController {
 	}
 
 	// 根据用户的区域查询客户
+	//测试一下
 	@RequestMapping("/getCustomerByAreaId/{area}")
 	public ResponseEntity<List<Customer>> getCustomerByAreaId(@PathVariable("area") String area) {
 
