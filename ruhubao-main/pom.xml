@@ -1,10 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>cn.crm.bolinruhubao</groupId>
-  <artifactId>ruhubao-main</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.crm.bolinruhubao</groupId>
+	<artifactId>ruhubao-main</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<properties>
 		<junit.version>4.12</junit.version>
 		<spring.version>4.3.9.RELEASE</spring.version>
 		<mybatis.version>3.4.1</mybatis.version>
@@ -30,7 +32,8 @@
 		<jedis.version>2.9.0</jedis.version>
 		<quartz.version>2.2.2</quartz.version>
 		<shiro.version>1.2.1</shiro.version>
-
+		<springfox.version>2.4.0</springfox.version>
+		<!-- <swagger2.version>2.2.2</swagger2.version> <swagger-springmvc.version>1.0.2</swagger-springmvc.version> -->
 		<!-- 文件上传包版本 -->
 		<poi.version>3.9</poi.version>
 
@@ -259,6 +262,22 @@
 			<!-- <version>1.1.37</version> -->
 			<version>1.2.41</version>
 		</dependency>
+		<!-- springfox依赖 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>15.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -286,7 +305,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
 					<path>/</path>
-					<port>9091</port>
+					<port>9092</port>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -6,4 +6,7 @@ public class RedisString {
 	public final static String CUSTOMER="CUSTOMER_JSONOBJECT";
 	public final static String PHONE="CUSTOMER_PHONE";
 	
+	public final static String FANGWENCONTNUMBER="RUHUBAO_JIFEN_TONGJI_FANG_WEN_COUNT_NUMBER";
+	
+	
 }

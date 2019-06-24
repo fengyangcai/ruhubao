@@ -69,6 +69,7 @@ public class CustomerController {
 
 	}
 
+	@CrossOrigin(origins = "*", allowedHeaders="*")
 	@RequestMapping("/addCustomer")
 	public ResponseEntity<Map<String, Object>> addCustomer(Customer cst) {
 		try {

@@ -17,7 +17,7 @@
 			<nav class="navbar navbar-default">
 				<div class="container">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="#"><img src="/img/1534830910.png"></a>
+						<a class="navbar-brand" href="#"><img src="/img/bolinglink.png"></a>
 						<span class="logintitle">员工登录</span>
 					</div>
 				</div>

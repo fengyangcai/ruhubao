@@ -29,12 +29,12 @@
 			 -->
 			<value>
 				/css/**=anon
-				/images/**=anon
 				/img/**=anon
 				/js/**=anon
-				/ku/**=anon
+			<!-- /ku/**=anon
+				/images/**=anon
 				/mobile/**=anon
-				/tuiguangye/**=anon
+				/tuiguangye/**=anon -->
 				/crm-system/**=anon
 				/services/**=anon
 				/validatecode.jsp=anon
@@ -45,7 +45,9 @@
 				/show.html=anon
 				/data/customer/getCustomers =anon
 				/data/customer/addCustomer =anon
-				
+				/data/autoCode/getCode=anon
+				/swagger-ui.html=anon
+				/data/swagger-ui.html=anon
 				/**=authc
 				<!-- 用户授权 -->
 				<!-- /pages/base/standard.jsp* = perms[standard:*]

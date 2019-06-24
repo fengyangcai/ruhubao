@@ -25,7 +25,9 @@
 		</property>
 	</bean>
 
-
+	<!-- 引入swagger相关 -->
+    <mvc:resources mapping="com.swagger-ui.html" location="classpath:/META-INF/resources/" />
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/" />
