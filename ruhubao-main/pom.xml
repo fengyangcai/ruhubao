@@ -31,7 +31,7 @@
 		<commons-codec.version>1.9</commons-codec.version>
 		<jedis.version>2.9.0</jedis.version>
 		<quartz.version>2.2.2</quartz.version>
-		<shiro.version>1.2.1</shiro.version>
+		<shiro.version>1.5.0</shiro.version>
 		<springfox.version>2.4.0</springfox.version>
 		<!-- <swagger2.version>2.2.2</swagger2.version> <swagger-springmvc.version>1.0.2</swagger-springmvc.version> -->
 		<!-- 文件上传包版本 -->
